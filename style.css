@@ -1,0 +1,47 @@
+#intro {
+  text-align: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #F0EAD6;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#logo {
+  height: 15%;
+  width: 15%;
+  box-shadow: none;
+  border-width: thin;
+}
+
+header {
+  text-align: center;
+}
+
+img {
+  width: 300px;
+  margin: 10px 20px;
+  border: 2px solid black;
+  box-shadow: 10px 10px 20px maroon;
+}
+
+img:hover {
+  box-shadow: 10px 10px 25px 5px maroon;
+}
+
+table {
+  align-items: center;
+  background-color: #F0EAD6;
+  border-style: ridge;
+  border-color: maroon;
+  border-width: medium;
+}
+th, td, tr {
+  border-style: solid;
+  border-width: thin;
+  border-color: maroon;
+}
