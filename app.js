@@ -1,15 +1,16 @@
 var randomPictures = [];
+console.log(randomPictures);
 // var timesClicked = [];
 
 var showImage = document.getElementById('show-image');
 
 function Picture(imgName, filePath) {
-  this.imgName = imgName,
-  this.filePath = filePath,
-  this.newPath = 'img/' + filePath,
-  this.width = 300,
-  this.height = 300,
-  this.timesShown = 0,
+  this.imgName = imgName;
+  this.filePath = filePath;
+  this.newPath = 'img/' + filePath;
+  this.width = 300;
+  this.height = 300;
+  this.timesShown = 0;
   this.timesClicked = 0;
 }
 randomPictures.push(new Picture('bag', 'bag.jpg'));
@@ -37,38 +38,35 @@ randomPictures.push(new Picture('wine-glass', 'wine-glass.jpg'));
 function calculateMath() {
   return Math.floor(Math.random() * randomPictures.length);
 }
+var img1 = calculateMath();
 
-//function that handles imgs and keeps them from duplicating
-function genThree() {
-  var img1 = calculateMath();
+var divEl = document.createElement('divEl');
+divEl.innerHTML = '<img src=' + randomPictures[img1].newPath + '>';
+randomPictures[img1].timesShown++;
+showImage.appendChild(divEl);
 
-  var divEl = document.createElement('divEl');
-  divEl.innerHTML = '<img src=' + randomPictures[img1].newPath + '>';
-  randomPictures[img1].timesShown++;
-  showImage.appendChild(divEl);
+var img2 = calculateMath(Picture);
 
-  var img2 = calculateMath(Picture);
+while (img1 === img2) {
+  img2 = calculateMath();
+}
 
-  while (img1 === img2) {
-    img2 = calculateMath();
-  }
+var divElTwo = document.createElement('divElTwo');
+divElTwo.innerHTML = '<img src=' + randomPictures[img2].newPath + '>';
+randomPictures[img2].timesShown++;
+showImage.appendChild(divElTwo);
 
-  var divElTwo = document.createElement('divElTwo');
-  divElTwo.innerHTML = '<img src=' + randomPictures[img2].newPath + '>';
-  randomPictures[img2].timesShown++;
-  showImage.appendChild(divElTwo);
+var img3 = calculateMath();
 
-  var img3 = calculateMath();
+while (img3 === img1 || img3 === img2) {
+  img3 = calculateMath();
+}
 
-  while (img3 === img1 || img3 === img2) {
-    img3 = calculateMath();
-  }
+var divElThree = document.createElement('divElThree');
+divElThree.innerHTML = '<img src=' + randomPictures[img3].newPath + '>';
+randomPictures[img3].timesShown++;
+showImage.appendChild(divElThree);
 
-  var divElThree = document.createElement('divElThree');
-  divElThree.innerHTML = '<img src=' + randomPictures[img3].newPath + '>';
-  randomPictures[img3].timesShown++;
-  showImage.appendChild(divElThree);
-};
 
 function handleClick(event) {
   console.log('you have clicked here');
@@ -78,11 +76,15 @@ function handleClick(event) {
     }
     showImg.innerHTML = ' ';
 
-    genThree();
-  }
-};
+    //function that handles imgs and keeps them from duplicating
+    function genThree() {
 
-handleClick.addEventListener('click', handleClick);
+      genThree();
+    }
+  };
 
-genThree();
-handleClick();
+  handleClick.addEventListener('click', divEl);
+
+  genThree();
+  handleClick();
+}
